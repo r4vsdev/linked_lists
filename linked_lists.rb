@@ -15,6 +15,17 @@ class LinkedList
       @head.pointer = new_node
     end
   end
+
+  def prepend(value)
+    puts "prepending #{value}"
+    new_node = Node.new(value)
+    if @head == nil
+      @head = new_node
+    else
+      new_node.pointer = @head
+      @head = new_node
+    end
+  end
 end
 
 # creates a node with default value and pointer set to nil
@@ -29,7 +40,7 @@ end
 
 list = LinkedList.new
 p list
-list.append('Pedro')
+list.prepend('Pedro')
 p list
-list.append(3)
+list.prepend(3)
 p list
