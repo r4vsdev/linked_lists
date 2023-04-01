@@ -3,11 +3,12 @@
 # creates a Linked List
 class LinkedList
   def initialize
+    @nodes = 0
     @head = nil
   end
 
   def append(value)
-    puts "appending #{value}"
+    @nodes += 1
     new_node = Node.new(value)
     if @head == nil
       @head = new_node
@@ -17,7 +18,7 @@ class LinkedList
   end
 
   def prepend(value)
-    puts "prepending #{value}"
+    @nodes += 1
     new_node = Node.new(value)
     if @head == nil
       @head = new_node
@@ -25,6 +26,10 @@ class LinkedList
       new_node.pointer = @head
       @head = new_node
     end
+  end
+
+  def size
+    @nodes
   end
 end
 
@@ -39,8 +44,6 @@ class Node < LinkedList
 end
 
 list = LinkedList.new
-p list
 list.prepend('Pedro')
-p list
 list.prepend(3)
-p list
+p list.size
