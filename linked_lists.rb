@@ -31,6 +31,10 @@ class LinkedList
   def size
     @nodes
   end
+
+  def head
+    @head
+  end
 end
 
 # creates a node with default value and pointer set to nil
@@ -46,4 +50,4 @@ end
 list = LinkedList.new
 list.prepend('Pedro')
 list.prepend(3)
-p list.size
+p list.head
