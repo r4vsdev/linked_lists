@@ -1,8 +1,7 @@
-# frozen_string_literal: true
-
 # creates a Linked List
 class LinkedList
   attr_reader :size, :head
+
   def initialize
     @size = 0
     @head = nil
@@ -15,11 +14,9 @@ class LinkedList
       @head = new_node
     else
       tmp = @head
-      while tmp.next_node != nil do
-        tmp = tmp.next_node
-      end
+      tmp = tmp.next_node until tmp.next_node.nil?
       tmp.next_node = new_node
-    end    
+    end
   end
 
   def prepend(value)
@@ -35,28 +32,25 @@ class LinkedList
 
   def tail
     tmp = @head
-    while tmp.next_node != nil do
-      tmp = tmp.next_node
-    end
-    return tmp
+    tmp = tmp.next_node until tmp.next_node.nil?
+    tmp
   end
 
   def at(index)
     return 'Err: Out of range' if index > size
+
     tmp = @head
     i = 0
-    while i != index do
+    while i != index
       tmp = tmp.next_node
       i += 1
     end
-    return tmp
+    tmp
   end
 
   def pop
     tmp = @head
-    while tmp.next_node.next_node != nil do
-      tmp = tmp.next_node
-    end
+    tmp = tmp.next_node until tmp.next_node.next_node.nil?
     @size -= 1
     tmp.next_node = nil
   end
@@ -65,11 +59,11 @@ class LinkedList
     return true if @head.value == value
 
     tmp = @head
-    while tmp.next_node != nil do
+    until tmp.next_node.nil?
       tmp = tmp.next_node
       return true if value == tmp.value
     end
-    return false
+    false
   end
 
   def find(value)
@@ -77,12 +71,22 @@ class LinkedList
 
     tmp = @head
     i = 0
-    while tmp.next_node != nil do
+    until tmp.next_node.nil?
       tmp = tmp.next_node
       i += 1
       return i if value == tmp.value
     end
-    return nil
+    nil
+  end
+
+  def to_s
+    tmp = @head
+    formatted = "( #{tmp.value} ) -> "
+    until tmp.next_node.nil?
+      tmp = tmp.next_node
+      formatted << "( #{tmp.value} ) -> "
+    end
+    formatted << 'nil'
   end
 end
 
@@ -95,13 +99,3 @@ class Node < LinkedList
     @next_node = next_node
   end
 end
-
-list = LinkedList.new
-list.append(3)
-list.append(4)
-list.append(5)
-
-p list.find(3)
-p list.find(4)
-p list.find(5)
-p list.find(6)
