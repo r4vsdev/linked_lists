@@ -2,7 +2,7 @@
 
 # creates a Linked List
 class LinkedList
-  attr_reader :size
+  attr_reader :size, :head
   def initialize
     @size = 0
     @head = nil
@@ -14,10 +14,8 @@ class LinkedList
     if @head.nil?
       @head = new_node
     else
-      p 'running else'
       tmp = @head
       while tmp.next_node != nil do
-        puts 'running while loop'
         tmp = tmp.next_node
       end
       tmp.next_node = new_node
@@ -30,11 +28,18 @@ class LinkedList
     if @head.nil?
       @head = new_node
     else
-      new_node.pointer = @head
+      new_node.next_node = @head
       @head = new_node
     end
   end
 
+  def tail
+    tmp = @head
+    while tmp.next_node != nil do
+      tmp = tmp.next_node
+    end
+    return tmp
+  end
 
 end
 
@@ -49,10 +54,10 @@ class Node < LinkedList
 end
 
 list = LinkedList.new
-p list
+# p list
 list.append(3)
-p list
+# p list
 list.append(4)
-p list
+# p list
 list.append(5)
-p list
+p list.tail
