@@ -63,13 +63,26 @@ class LinkedList
 
   def contains?(value)
     return true if @head.value == value
-    
+
     tmp = @head
     while tmp.next_node != nil do
       tmp = tmp.next_node
       return true if value == tmp.value
     end
     return false
+  end
+
+  def find(value)
+    return 0 if value == @head.value
+
+    tmp = @head
+    i = 0
+    while tmp.next_node != nil do
+      tmp = tmp.next_node
+      i += 1
+      return i if value == tmp.value
+    end
+    return nil
   end
 end
 
@@ -84,14 +97,11 @@ class Node < LinkedList
 end
 
 list = LinkedList.new
-# p list
 list.append(3)
-# p list
 list.append(4)
-# p list
 list.append(5)
-p list.contains?(3)
-p list.contains?(4)
-p list.contains?(5)
 
-p list.contains?(6)
+p list.find(3)
+p list.find(4)
+p list.find(5)
+p list.find(6)
