@@ -41,6 +41,17 @@ class LinkedList
     return tmp
   end
 
+  def at(index)
+    return 'Err: Out of range' if index > size
+    tmp = @head
+    i = 0
+    while i != index do
+      tmp = tmp.next_node
+      i += 1
+    end
+    return tmp
+  end
+
 end
 
 # creates a node with default value and pointer set to nil
@@ -60,4 +71,4 @@ list.append(3)
 list.append(4)
 # p list
 list.append(5)
-p list.tail
+p list
