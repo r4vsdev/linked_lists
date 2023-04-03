@@ -10,7 +10,7 @@ class LinkedList
   def append(value)
     @nodes += 1
     new_node = Node.new(value)
-    if @head == nil
+    if @head.nil?
       @head = new_node
     else
       @head.pointer = new_node
@@ -20,7 +20,7 @@ class LinkedList
   def prepend(value)
     @nodes += 1
     new_node = Node.new(value)
-    if @head == nil
+    if @head.nil?
       @head = new_node
     else
       new_node.pointer = @head
@@ -32,8 +32,13 @@ class LinkedList
     @nodes
   end
 
-  def head
-    @head
+  attr_reader :head
+
+  def tail(node = @head)
+    return node if node.pointer.nil?
+
+    next_node = node.pointer.pointer
+    tail(next_node)
   end
 end
 
@@ -50,4 +55,5 @@ end
 list = LinkedList.new
 list.prepend('Pedro')
 list.prepend(3)
-p list.head
+# p list
+p list.tail
