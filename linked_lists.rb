@@ -60,6 +60,17 @@ class LinkedList
     @size -= 1
     tmp.next_node = nil
   end
+
+  def contains?(value)
+    return true if @head.value == value
+    
+    tmp = @head
+    while tmp.next_node != nil do
+      tmp = tmp.next_node
+      return true if value == tmp.value
+    end
+    return false
+  end
 end
 
 # creates a node with default value and pointer set to nil
@@ -79,4 +90,8 @@ list.append(3)
 list.append(4)
 # p list
 list.append(5)
-p list
+p list.contains?(3)
+p list.contains?(4)
+p list.contains?(5)
+
+p list.contains?(6)
