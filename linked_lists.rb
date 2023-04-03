@@ -52,6 +52,14 @@ class LinkedList
     return tmp
   end
 
+  def pop
+    tmp = @head
+    while tmp.next_node.next_node != nil do
+      tmp = tmp.next_node
+    end
+    @size -= 1
+    tmp.next_node = nil
+  end
 end
 
 # creates a node with default value and pointer set to nil
